@@ -1,0 +1,178 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Cyber color palette */
+  --color-cyber-bg:         #080c14;
+  --color-cyber-surface:    #0d1520;
+  --color-cyber-card:       #111d2e;
+  --color-cyber-border:     #1a2d45;
+  --color-cyber-muted:      #1e3554;
+  --color-cyber-accent:     #00d4ff;
+  --color-cyber-accent-dim: #0099bb;
+  --color-cyber-green:      #00ff88;
+  --color-cyber-green-dim:  #00b360;
+  --color-cyber-red:        #ff3366;
+  --color-cyber-red-dim:    #cc2952;
+  --color-cyber-orange:     #ff8c42;
+  --color-cyber-yellow:     #ffd700;
+  --color-cyber-text:       #e2eaf5;
+  --color-cyber-text-muted: #7a94b5;
+  --color-cyber-text-dim:   #4a6480;
+
+  /* Custom animations */
+  --animate-pulse-slow:      pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-glow:            glow 2s ease-in-out infinite alternate;
+  --animate-fade-in:         fadeIn 0.4s ease-out;
+  --animate-slide-up:        slideUp 0.4s ease-out;
+  --animate-slide-in-right:  slideInRight 0.35s ease-out;
+}
+
+@keyframes glow {
+  0%   { box-shadow: 0 0 5px rgba(0,212,255,0.3); }
+  100% { box-shadow: 0 0 20px rgba(0,212,255,0.7), 0 0 40px rgba(0,212,255,0.3); }
+}
+
+@keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes slideUp {
+  0%   { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  0%   { opacity: 0; transform: translateX(32px); }
+  100% { opacity: 1; transform: translateX(0); }
+}
+
+/* Base styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #080c14;
+  color: #e2eaf5;
+  font-family: 'Inter', system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0d1520;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a2d45;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00d4ff40;
+}
+
+/* Utility classes */
+.cyber-card {
+  background: #111d2e;
+  border: 1px solid #1a2d45;
+  border-radius: 0.75rem;
+}
+
+.cyber-card-glow {
+  background: #111d2e;
+  border: 1px solid #1a2d4580;
+  border-radius: 0.75rem;
+  box-shadow: 0 0 30px rgba(0,212,255,0.05), inset 0 1px 0 rgba(0,212,255,0.08);
+}
+
+.cyber-input {
+  background: #0d1520;
+  border: 1px solid #1a2d45;
+  color: #e2eaf5;
+  border-radius: 0.5rem;
+  padding: 0.625rem 1rem;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.875rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.cyber-input:focus {
+  border-color: #00d4ff;
+  box-shadow: 0 0 0 3px rgba(0,212,255,0.1);
+}
+
+.cyber-input::placeholder {
+  color: #4a6480;
+}
+
+.cyber-btn {
+  background: linear-gradient(135deg, #00d4ff20, #0099bb20);
+  border: 1px solid #00d4ff60;
+  color: #00d4ff;
+  border-radius: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.025em;
+}
+
+.cyber-btn:hover {
+  background: linear-gradient(135deg, #00d4ff30, #0099bb30);
+  box-shadow: 0 0 20px rgba(0,212,255,0.25);
+}
+
+.cyber-btn-primary {
+  background: linear-gradient(135deg, #00d4ff, #0099bb);
+  border: none;
+  color: #080c14;
+  font-weight: 700;
+}
+
+.cyber-btn-primary:hover {
+  background: linear-gradient(135deg, #00e5ff, #00b0cc);
+  box-shadow: 0 0 30px rgba(0,212,255,0.4);
+  transform: translateY(-1px);
+}
+
+.cyber-btn-danger {
+  background: linear-gradient(135deg, #ff336620, #cc295220);
+  border: 1px solid #ff336660;
+  color: #ff3366;
+}
+
+.cyber-btn-danger:hover {
+  background: linear-gradient(135deg, #ff336630, #cc295230);
+  box-shadow: 0 0 20px rgba(255,51,102,0.3);
+}
+
+/* Grid background */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Animate utilities */
+.animate-fade-in       { animation: fadeIn 0.4s ease-out; }
+.animate-slide-up      { animation: slideUp 0.4s ease-out; }
+.animate-slide-in-right{ animation: slideInRight 0.35s ease-out; }
+.animate-glow          { animation: glow 2s ease-in-out infinite alternate; }
