@@ -20,7 +20,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.auth import get_optional_user
 from app.config import settings
-from app.database import get_db
+from app.database import get_db, init_db
 from app.models import User
 from app.routers import alerts, auth, detection, devices, stats, mcp_agent
 from app.routers.detection import explain_anomaly, predict_event
@@ -140,6 +140,10 @@ async def _live_alert_simulator() -> None:
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Sybrai API starting up (AI Detection + MCP Services + Isolation Forest enabled) …")
+    try:
+        await init_db()
+    except Exception as e:
+        logger.warning("Database init error: %s", e)
     try:
         await mcp_manager.initialize()
     except Exception as e:
